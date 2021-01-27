@@ -3,6 +3,7 @@ package com.provenorte.invoices.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.provenorte.invoices.model.Product;
 import com.provenorte.invoices.service.ProductService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/v1/products")
 public class ProductRestController {
 
@@ -34,7 +36,6 @@ public class ProductRestController {
 
 	@PostMapping
 	public void save(@RequestBody Product product) {
-		product.setActive(1);
 		productService.save(product);
 	}
 

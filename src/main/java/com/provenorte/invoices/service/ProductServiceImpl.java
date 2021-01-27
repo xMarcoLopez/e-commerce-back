@@ -4,11 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import org.apache.commons.lang.RandomStringUtils;
 
 import com.provenorte.invoices.model.Product;
 import com.provenorte.invoices.repository.ProductRepository;
 
 @Service
+@Transactional
 public class ProductServiceImpl implements ProductService{
 
 	@Autowired
@@ -26,6 +30,8 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public void save(Product product) {
+		product.setCode(RandomStringUtils.randomAlphanumeric(6).toUpperCase());
+		product.setActive(1);	
 		productRepository.save(product);	
 	}
 
